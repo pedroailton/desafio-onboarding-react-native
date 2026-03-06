@@ -25,14 +25,12 @@ export default function Saved() {
 
     return(
         <SafeAreaView style={styles.container}>
-            <Text>Receitas Salvas</Text>
-
             {savedRecipesList.length === 0 ? (
                 <View>
                     <Text style={styles.warningText}>Você ainda não tem receitas salvas.</Text>
                 </View>) : (
                 <FlatList
-                    ListHeaderComponent={<Text style={styles.header}>O que vamos cozinhar hoje?</Text>}
+                    ListHeaderComponent={<Text style={styles.header}>Receitas Salvas</Text>}
                     data={savedRecipesList}
                     keyExtractor={(item) => item.idMeal}
                     renderItem={({ item }) => <RecipeCard recipe={item}/>}
@@ -59,6 +57,10 @@ const styles = StyleSheet.create({
     },
 
     header: {
-
-    }
+        fontSize: 24,
+        fontWeight: 800,
+        color: "#ffffff",
+        textAlign: "center",
+        marginTop: 8,
+    },
 })

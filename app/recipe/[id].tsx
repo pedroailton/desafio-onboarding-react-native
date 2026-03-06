@@ -2,6 +2,8 @@ import { ActivityIndicator, ScrollView, Text, View, Image, StyleSheet, Alert, To
 import { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SavingButton from "@/components/SavingButton";
+import IngredientList from "@/components/IngredientList";
 
 interface RecipeDetailsProps {
     idMeal: string;
@@ -14,6 +16,7 @@ interface RecipeDetailsProps {
 export default function RecipeDetails() {
     const [recipe, setRecipe] = useState<RecipeDetailsProps | null >(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [recipeAlreadySaved, setRecipeAlreadySaved] = useState(false); 
 
     const { id } = useLocalSearchParams()
 
@@ -27,8 +30,19 @@ export default function RecipeDetails() {
             setIsLoading(false)
         }
 
-        getRecipeDetails()
-    }, [])
+        getRecipeDetails();
+    }, [id])
+
+    useEffect(() => {
+        async function checkIfRecipeAlreadySaved() {
+            const savedRecipes = await AsyncStorage.getItem("@cookbuddy_saved");
+            const parsedSavedRecipes = savedRecipes ? JSON.parse(savedRecipes) : [];
+            const isAlreadySaved = parsedSavedRecipes.some((item: any) => item.idMeal === recipe?.idMeal);
+            setRecipeAlreadySaved(isAlreadySaved);
+        }
+
+        checkIfRecipeAlreadySaved();
+    }, [recipe])
 
     // Tratamento de dados da API
     const ingredients = [];
@@ -82,19 +96,12 @@ export default function RecipeDetails() {
                         <Image style={styles.image} source={{uri: recipe.strMealThumb}}/>
                         <View style={styles.textContainer}>
                             <Text style={styles.title}>{recipe.strMeal}</Text>
-                            <TouchableOpacity style={styles.savingButton} onPress={handleSaveRecipe}>
-                                <Text style={styles.savingText}>Salvar receita</Text>
-                            </TouchableOpacity>
+                            <SavingButton recipeAlreadySaved={recipeAlreadySaved} handleSaveRecipe={handleSaveRecipe} />
                             <Text style={styles.subtitle}>Ingredientes</Text>
 
                             <View style={styles.divider}></View>
 
-                            {ingredients.map((item) => (
-                                <View key={item.id} style={styles.ingredientRow}>
-                                    <Text style={styles.ingredientName}>{item.name}</Text>
-                                    <Text style={styles.ingredientMeasure}>{item.measure}</Text>
-                                </View>
-                            ))}
+                            <IngredientList ingredients={ingredients} />
 
                             <View style={styles.divider}></View>
 
@@ -151,22 +158,6 @@ const styles = StyleSheet.create({
         fontWeight: 700,
     },
 
-    savingButton: {
-        backgroundColor: "#ad4a11",
-        borderRadius: 10,
-        borderWidth: 1,
-        padding: 15,
-        marginTop: 10,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-
-    savingText: {
-        color: "#ffffff",
-        fontWeight: "bold",
-        fontSize: 18,
-    },
-
     subtitle: {
         fontSize: 24,
     },
@@ -176,21 +167,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#000000",
         width: "100%",
         marginVertical: 20,
-
-    },
-
-    ingredientRow: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        margin: 6,
-        gap: 6,
-    },
-
-    ingredientName: {
-        fontWeight: "bold",
-    },
-
-    ingredientMeasure: {
 
     },
 

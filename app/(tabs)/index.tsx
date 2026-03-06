@@ -3,10 +3,10 @@ import { ScrollView, Text, View, ImageBackground, StyleSheet } from "react-nativ
 export default function Home() {
     return (
         <ScrollView>
-            <ImageBackground source={{ uri: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop" }} style={styles.background}>
+            <ImageBackground source={require("@/assets/images/bg-home.png")} style={styles.background}>
                 <Text style={styles.title}>Bem Vindo ao CookBuddy</Text>
                 <Text style={styles.subtitle}>Seu parceiro de cozinha por voz</Text>
-                <Text style={styles.contentText}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint dolorum eaque impedit soluta nesciunt non blanditiis minus officia. Aperiam fugiat blanditiis sed laboriosam cupiditate alias aliquid quas exercitationem non amet.</Text>
+                <Text style={styles.contentText}>Transforme sua rotina na cozinha com o CookBuddy. Descubra milhares de pratos deliciosos e prepare-se para uma experiência culinária totalmente nova. Mais do que um simples catálogo de receitas, o seu novo assistente inteligente está aqui para guiar você, de forma prática e interativa, em cada passo do preparo.</Text>
             </ImageBackground>
         </ScrollView>
     )

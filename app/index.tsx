@@ -8,7 +8,7 @@ export default function SplashScreen() {
 
     // Temporizador de 2 segundos
     useEffect(() => {
-        setTimeout(() => {router.replace("/login");}, 2000)
+        setTimeout(() => {router.replace("/login");}, 1000)
     }, []);
 
 
