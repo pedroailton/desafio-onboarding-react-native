@@ -1,4 +1,6 @@
 import { ScrollView, Text, View, ImageBackground, StyleSheet } from "react-native";
+import { scaleFont } from "@/app/utils/utils";
+
 
 export default function Home() {
     return (
@@ -22,21 +24,21 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 42,
+        fontSize: scaleFont(42),
         fontWeight: 900,
         color: "#FFFFFF",
         textAlign: 'center'
     },
 
     subtitle: {
-        fontSize: 32,
+        fontSize: scaleFont(32),
         fontWeight: 400,
         color: "#FFFFFF",
         textAlign: 'center'
     },
 
     contentText: {
-        fontSize: 18,
+        fontSize: scaleFont(18),
         fontWeight: 400,
         color: "#FFFFFF",
         textAlign: 'center'

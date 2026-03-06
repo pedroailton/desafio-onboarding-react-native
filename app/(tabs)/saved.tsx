@@ -5,6 +5,7 @@ import { useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RecipeCard from '@/components/RecipeCard';
 import { RecipeProps } from './recipes';
+import { scaleFont } from "@/app/utils/utils";
 
 export default function Saved() {
     const [savedRecipesList, setSavedRecipesList] = useState<RecipeProps[]>([])
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     },
 
     header: {
-        fontSize: 24,
+        fontSize: scaleFont(24),
         fontWeight: 800,
         color: "#ffffff",
         textAlign: "center",

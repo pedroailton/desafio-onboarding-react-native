@@ -1,9 +1,10 @@
-import { ActivityIndicator, ScrollView, Text, View, Image, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import { ActivityIndicator, ScrollView, Text, View, Image, StyleSheet, Alert, useWindowDimensions } from "react-native";
 import { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SavingButton from "@/components/SavingButton";
 import IngredientList from "@/components/IngredientList";
+import { scaleFont } from "@/app/utils/utils";
 
 interface RecipeDetailsProps {
     idMeal: string;
@@ -116,6 +117,8 @@ export default function RecipeDetails() {
     )
 }
 
+const { width } = useWindowDimensions()
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        height: 300,
+        height: width * 0.7,
         width: "100%"
     },
 
@@ -152,14 +155,14 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 32,
+        fontSize: scaleFont(32),
         marginTop: 10,
         color: "#ffffff",
         fontWeight: 700,
     },
 
     subtitle: {
-        fontSize: 24,
+        fontSize: scaleFont(24),
     },
 
     divider: {

@@ -2,6 +2,7 @@ import { ScrollView, View, StyleSheet, Image, Text, TextInput, KeyboardAvoidingV
 import { useState } from "react";
 import LoginButton from "@/components/LoginButton";
 import LoginInput from "@/components/LoginInput";
+import { scaleFont } from "@/app/utils/utils";
 
 export default function LoginScreen() {
     const [email, setEmail] = useState("");
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 32,
+        fontSize: scaleFont(32),
         fontWeight: 800,
         color: "#FFFFFF",
     },

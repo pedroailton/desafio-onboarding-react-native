@@ -1,4 +1,6 @@
 import {Text, TouchableOpacity, StyleSheet } from "react-native";
+import { scaleFont } from "@/app/utils/utils";
+
 
 interface SavingButtonProps {
     recipeAlreadySaved: boolean;
@@ -30,12 +32,12 @@ const styles = StyleSheet.create({
     savingText: {
         color: "#ffffff",
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: scaleFont(18),
     },
 
     alreadySavingText: {
         color: "#000000",
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: scaleFont(18),
     },
 })

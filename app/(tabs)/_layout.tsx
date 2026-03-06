@@ -1,5 +1,7 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { scaleFont } from "@/app/utils/utils";
+
 
 export default function TabsLayout() {
   return (
@@ -15,7 +17,7 @@ export default function TabsLayout() {
           borderTopWidth: 1,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: scaleFont(12),
           fontWeight: "600",
         },
         tabBarItemStyle: {

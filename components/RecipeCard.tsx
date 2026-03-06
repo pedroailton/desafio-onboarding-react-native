@@ -1,6 +1,8 @@
 import { StyleSheet, TouchableOpacity, Image, Text } from "react-native";
 import { RecipeProps } from "@/app/(tabs)/recipes";
 import { useRouter } from "expo-router";
+import { scaleFont } from "@/app/utils/utils";
+
 
 export default function RecipeCard({recipe}: {recipe: RecipeProps}) {
     const router = useRouter();
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
 
     title: {
         color: "#ffffff",
-        fontSize: 18,
+        fontSize: scaleFont(18),
         fontWeight: 600,
         marginTop: 5,
     }
