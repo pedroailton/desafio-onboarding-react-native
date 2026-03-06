@@ -44,6 +44,12 @@ O aplicativo guarda os pratos preferidos do usuário utilizando a memória do di
 * **Prevenção de Duplicatas**: Antes de salvar, a aplicação checa através da função `.some()` se a receita selecionada já existe no cofre.
 * **Ciclo de Vida Otimizado**: Na aba de receitas salvas (`saved.tsx`), os dados são buscados através do hook `useFocusEffect` atrelado ao `useCallback`. Isso garante que, ao navegar de volta para a aba, as informações sejam recarregadas sem comprometer a performance do React Native com loops de renderização infinitos.
 
+## 📏 Responsividade e Adaptação de Tela
+
+Para garantir uma experiência de usuário consistente e fluida em diferentes tamanhos de dispositivos (desde smartphones compactos até tablets), o aplicativo conta com técnicas nativas de responsividade:
+* **Layouts Fluidos:** Utilização do hook `useWindowDimensions` do React Native para ler a largura da tela em tempo real e calcular o tamanho de elementos dinamicamente (como a imagem de destaque da receita, que mantém proporções perfeitas sem quebrar o layout).
+* **Tipografia Escalável:** Em vez de utilizar fontes com tamanhos fixos absolutos, o projeto implementa uma lógica de escalonamento baseada nas dimensões da tela do usuário. Isso garante que os textos (`fontSize`) cresçam ou diminuam proporcionalmente, mantendo a legibilidade e a harmonia visual em qualquer resolução.
+
 ## 📱 Como executar o projeto localmente
 
 1. Clone este repositório.
